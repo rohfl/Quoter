@@ -4,15 +4,72 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/backgroundcolor">
 
-    <TextView
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/quote_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        android:background="@color/cardcolor"
+        app:cardBackgroundColor="@color/cardcolor"
+        app:cardCornerRadius="32dp"
+        android:minHeight="300dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.387" >
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:minHeight="300dp"
+            android:padding="24dp"
+            android:weightSum="10"
+            android:gravity="center">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/quote_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:fontFamily="sans-serif-light"
+                android:textColor="@color/white"
+                android:text=""
+                android:layout_marginBottom="16dp"
+                android:layout_weight="9"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/author_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:text=""
+                android:layout_weight="1"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/get_quote_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="52dp"
+        android:backgroundTint="@color/cardcolor"
+        android:padding="16dp"
+        android:text="@string/get_quote_button"
+        app:cornerRadius="16dp"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/quote_card"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/quote_card"
+        app:layout_constraintTop_toBottomOf="@+id/quote_card" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
