@@ -7,8 +7,9 @@ import com.rohfl.quoter.singleton.MySingleton;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 
-import com.android.volley.RequestQueue;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textview.MaterialTextView;
 
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     // views
     MaterialButton getQuoteButton;
     MaterialTextView quoteTV,authorTV;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,13 +36,25 @@ public class MainActivity extends AppCompatActivity {
         quoteTV = (MaterialTextView) findViewById(R.id.quote_tv);
         authorTV = (MaterialTextView) findViewById(R.id.author_tv);
         getQuoteButton = (MaterialButton) findViewById(R.id.get_quote_button);
+        progressBar = (ProgressBar) findViewById(R.id.progress_circular);
 
         // load a quote when first time user opens the app
+        quoteTV.setVisibility(View.GONE);
+        authorTV.setVisibility(View.GONE);
+        progressBar.setVisibility(View.VISIBLE);
+
+
         getData();
 
         // setting the onClickListener on the button, using lambda for less clutter
         // and better readability
         getQuoteButton.setOnClickListener(view -> {
+
+            // show the progress bar when we fetch the data
+            quoteTV.setVisibility(View.GONE);
+            authorTV.setVisibility(View.GONE);
+            progressBar.setVisibility(View.VISIBLE);
+
             getData();
         });
 
@@ -54,6 +68,12 @@ public class MainActivity extends AppCompatActivity {
         String QUOTE_URL = "https://api.quotable.io/random";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, QUOTE_URL,null,
                 response -> {
+
+                    // hide the progress bar after fetching the data
+                    progressBar.setVisibility(View.GONE);
+                    quoteTV.setVisibility(View.VISIBLE);
+                    authorTV.setVisibility(View.VISIBLE);
+
                     try {
 
                         // getting the strings from the keys content and author
