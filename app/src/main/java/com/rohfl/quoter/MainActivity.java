@@ -8,10 +8,13 @@ import com.rohfl.quoter.singleton.MySingleton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textview.MaterialTextView;
@@ -34,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
     private MaterialTextView quoteTV,authorTV;
     private ProgressBar progressBar;
     private MaterialCardView cardView;
+
+    // clipboard manager
+    private ClipboardManager clipboard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +88,16 @@ public class MainActivity extends AppCompatActivity {
 
             // get data
             getData();
+        });
+
+        // set click listener on card view to implement copy functionality
+        cardView.setOnClickListener(view -> {
+            // getting data from the text views
+            String copiedQuote = quoteTV.getText() + "\n\n" + authorTV.getText();
+            Toast.makeText(this,"Quote Copied",Toast.LENGTH_SHORT).show();
+
+            // calling method to copy the string to clipboard
+            copyToClipboard(copiedQuote);
         });
 
     }
@@ -161,7 +177,21 @@ public class MainActivity extends AppCompatActivity {
         // creating the alertdialog
         materialAlertDialogBuilder.create().show();
 
+    }
 
+    /**
+     * Method to copy the string passed to clipboard of the user.
+     * @param copiedQuote the quote available in the card view
+     */
+
+    public void copyToClipboard(String copiedQuote) {
+
+        // first time the copy method is called and the clipboard object is not yet created
+        if(clipboard == null) {
+            clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        }
+        ClipData clip = ClipData.newPlainText("Quote", copiedQuote);
+        clipboard.setPrimaryClip(clip);
     }
 
 }
