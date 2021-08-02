@@ -194,4 +194,6 @@ public class MainActivity extends AppCompatActivity {
         clipboard.setPrimaryClip(clip);
     }
 
+    // TODO (1) Add save quote as Image option
+
 }
