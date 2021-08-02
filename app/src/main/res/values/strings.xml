@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Quoter</string>
     <string name="get_quote_button">Get Quote</string>
-<!--    User instruction-->
+    <!--    User instruction-->
     <string name="alert_title">How to use Quoter?</string>
     <string name="instruction_message">\u2022 Get Quote button loads a Quote.\n\n\u2022 Click on the Quote to copy it.\n</string>
 </resources>
