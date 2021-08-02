@@ -23,7 +23,7 @@ import com.google.android.material.textview.MaterialTextView;
  * MainActivity
  * @author Rohit Jangid
  * @author https://www.github.com/rohfl
- * @version 1.0
+ * @version 1.1
  * @since 1.0
  */
 public class MainActivity extends AppCompatActivity {
